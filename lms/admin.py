@@ -15,7 +15,7 @@ admin.site.register(Category,CategoryAdmin)
 
 
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ['first_name', 'last_name','date_of_birth','created_date' ]
+    list_display = ['first_name', 'last_name','created_date' ]
     list_filter = ('created_date',)
     search_fields = ('first_name','last_name')
     ordering = ['first_name','last_name', 'created_date']
