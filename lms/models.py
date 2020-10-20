@@ -36,7 +36,7 @@ class Author(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     middle_name=models.CharField(max_length=100,blank=True,null=True)
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(blank=True,null=True)
     created_date = models.DateTimeField(default=timezone.now)
     updated_date = models.DateTimeField(auto_now_add=True)
 
