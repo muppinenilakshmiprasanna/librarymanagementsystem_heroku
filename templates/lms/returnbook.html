@@ -1,0 +1,12 @@
+{% extends 'lms/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+ <div class="ui main container">
+    <h1>Issue New book to student</h1>
+    <form method="POST" class="returnbook-form">
+        {% csrf_token %}
+          {{ form|crispy }}
+        <button type="submit" class="save btn btn-primary">Return Book</button>
+    </form>
+ </div>
+{% endblock %}

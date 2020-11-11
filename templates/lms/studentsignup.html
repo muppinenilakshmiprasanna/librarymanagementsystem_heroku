@@ -1,0 +1,21 @@
+{% extends "lms/base.html" %}
+
+{% block title %}Create an Account{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+ <div class="ui main container">
+	<h1>Create an student account</h1>
+    <p>Please, sign up using the following form:</p>
+    <form method="POST" class="form-group">
+	{% csrf_token %}
+	{{ userform|crispy }}
+		{{ studentform|crispy }}
+	<button type="submit" class="btn btn-success">Sign Up</button>
+    </form>
+	<div class="border-top pt-3">
+		<small class="text-muted">Already an Account?<a class="ml-2"  href="{% url 'lms:studentlogin' %}"> Log In </a></small>
+
+	</div>
+ </div>
+{% endblock %}

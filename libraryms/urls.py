@@ -22,12 +22,9 @@ from django.urls import path, include, re_path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('lms.urls')),
-    # path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
     # path('', include('django.contrib.auth.urls')),
-    re_path(r'^accounts/login/$', LoginView.as_view(template_name='registration/login.html'), name="login"),
-    re_path(r'^accounts/logout/$', LogoutView.as_view(template_name='registration/logout.html'), LogoutView.next_page,
-            name="logout"),
-
+    path('logout', LogoutView.as_view(template_name='registration/logout.html'),name='logout'),
     re_path(r'^accounts/password/reset/$',
             PasswordResetView.as_view(template_name='registration/password_reset_page.html'), name='password_reset'),
     re_path(r'^accounts/password/reset/done/$',

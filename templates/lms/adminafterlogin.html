@@ -1,0 +1,62 @@
+{% extends 'lms/base.html' %}
+{% load static %}
+{% block content %}
+<div class="ui main container">
+
+            <div class="page-container">
+                <h2 class="top-menu">Welcome {{ user.username }}, to online Library Management system </h2>
+                <p>Please choose from below options.</p>
+            </div>
+
+
+        <div class="content white-square">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="thumbnail">
+                        <h2>VIEW CATEGORIES</h2>
+                        <p><a class="btn btn-primary" href="{% url 'lms:category_list' %}" role="button">Click here </a></p>
+                    </div>
+                </div>
+                  <div class="col-md-5">
+                    <div class="thumbnail">
+                        <h2>VIEW AUTHORS</h2>
+                        <p><a class="btn btn-primary" href="{% url 'lms:author_list' %}" role="button">Click here </a></p>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="thumbnail">
+                        <h2>VIEW BOOKS</h2>
+                        <p><a class="btn btn-primary" href="{% url 'lms:book_list' %}" role="button">Click here </a></p>
+                    </div>
+                </div>
+                  <div class="col-md-5">
+                    <div class="thumbnail">
+                        <h2>ISSUE BOOK<br><br></h2>
+                        <p><a class="btn btn-primary" href="{% url 'lms:issuebook' %}" role="button">Click here </a></p>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="thumbnail">
+                        <h2>VIEW ISSUED BOOKS</h2>
+                        <p><a class="btn btn-primary" href="{% url 'lms:viewissuedbooks' %}" role="button">Click here </a></p>
+                    </div>
+                </div>
+
+
+                 <div class="col-md-5">
+                    <div class="thumbnail">
+                        <h2>ACCOUNT PROFILE</h2>
+                        <p><a class="btn btn-primary" href="{% url 'lms:staff_profile' %}" role="button">Click here </a></p>
+                    </div>
+                </div>
+
+              <div class="col-md-5">
+                    <div class="thumbnail">
+                        <h2>VIEW STUDENTS</h2>
+                        <p><a class="btn btn-primary" href="{% url 'lms:viewstudent' %}" role="button">Click here </a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

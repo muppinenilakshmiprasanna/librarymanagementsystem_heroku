@@ -1,0 +1,30 @@
+
+body {
+    padding-left: 15px;
+    background: url("../images/background.png") no-repeat;
+    background-size: cover;
+}
+
+h1 a {
+    color: #0000FF;
+    font-family: 'cursive';
+}
+
+p a {
+    color: #0000FF;
+    font-family: 'cursive';
+    font-size: 14pt;
+}
+
+div small a{
+      font-size: 14pt;
+}
+ div small{
+       font-size: 12pt;
+ }
+
+h1, h2, h3, h4 {
+    font-family: 'Lobster', cursive;
+    color: #0000FF;
+}
+

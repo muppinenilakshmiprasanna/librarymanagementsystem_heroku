@@ -1,0 +1,23 @@
+{% extends "lms/base.html" %}
+
+{% block content %}
+<div class="ui main container"  style="width: 30%;"  xmlns="http://www.w3.org/1999/html">
+<br><br>
+
+  <h3 >Book issued successfully !</h3>
+
+  <p class="lead">
+    <h5>Issues more books by clicking the below button</h5>
+    <a class="btn btn-primary btn-lg" href="{% url 'lms:issuebook' %}" role="button">Issue more books</a>
+  </p>
+
+     <p class="lead">
+        <h5>view the issued  books by clicking the below button</h5>
+    <a class="btn btn-primary btn-lg" href="{% url 'lms:viewissuedbooks' %}" role="button">View Issued Books</a>
+  </p>
+
+
+</div>
+
+{% endblock %}
+

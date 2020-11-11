@@ -1,0 +1,222 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <title>Library Management System</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/portfolio.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        /* Remove the navbar's default margin-bottom and rounded borders */
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+
+        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+        .row.content {
+            height: 450px
+        }
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            padding-top: 20px;
+            background-color: #f1f1f1;
+            height: 100%;
+        }
+
+        /* Set black background color, white text and some padding */
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+              bottom:0;
+            width:100%;
+
+        }
+
+        .item img {
+  width:100%
+}
+
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
+
+            .row.content {
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body id="app-layout">
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#myNavbar">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                Library Management System
+            </a>
+
+
+        </div>
+
+         <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="/" class="nav-item nav-link active">Home</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'lms:aboutus' %}">About Us</a>
+                </li>
+
+                 <li class="nav-item">
+                    <a class="nav-link" href="{% url 'lms:contactus' %}">Contact Us</a>
+                </li>
+
+                {% if user.is_authenticated %}
+                {% if user.groups.all.0.name == "ADMIN" or user.is_superuser %}
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                        Category</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{% url 'lms:category_new' %}">Add Category</a>
+                            <br>
+                            <a class="dropdown-item" href="{% url 'lms:category_list' %}"> View Categories</a>
+                        </div>
+                     </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Author</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                            <a class="dropdown-item" href="{% url 'lms:author_new' %}">Add Author</a>
+                            <br>
+                            <a class="dropdown-item" href="{% url 'lms:author_list' %}"> View Authors</a>
+                        </div>
+                     </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Book</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                           <a class="dropdown-item" href="{% url 'lms:book_new' %}">Add Book</a>
+                            <br>
+                            <a class="dropdown-item" href="{% url 'lms:book_list' %}"> View Books</a>
+                         </div>
+                     </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{% url 'lms:issuebook' %}">Issue Book</a>
+                </li>
+
+                 <li class="nav-item">
+                    <a class="nav-link" href="{% url 'lms:viewissuedbooks' %}">View Issued Books</a>
+                </li>
+
+
+
+                 <li class="nav-item">
+                    <a class="nav-link" href="{% url 'lms:staff_profile' %}">Account Profile</a>
+                </li>
+
+
+                {% elif user.groups.all.0.name == "STUDENT" %}
+
+                          <li class="nav-item">
+                    <a class="nav-link" href="{% url 'lms:student_profile' %}">Account Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'lms:book_list' %}"> View Books </a>
+                </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'lms:viewissuedbookstostudent' %}"> View Issued Books </a>
+                </li>
+                 {% endif %}
+                {% else %}
+                <li><a href="{% url 'lms:adminclick' %}" class="nav-item nav-link">Admin</a></li>
+                <li><a href="{% url 'lms:studentlink' %}" class="nav-item nav-link">Student</a></li>
+
+                {% endif %}
+
+
+
+
+            </ul>
+
+
+
+
+
+
+                  <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                     <span class="caret" style="width:10px;color: blue"></span></a>
+                    <ul class="dropdown-menu">
+
+                            <li><a href="{% url 'logout' %}"class="dropdown-item">Logout</a></li>
+                            <li><a href="{% url 'password_change' %}" class="dropdown-item">Change Password</a></li>
+                    </ul>
+
+
+                {% endif %}
+                      </li>
+            </ul>
+         </div>
+    </div>
+</nav>
+
+
+
+
+
+
+     {% block content %}
+    {% endblock %}
+
+
+
+<footer style="align-content: end">
+<br>
+  <div class="container">
+    <div class="row">
+
+               <div class="col-md-12 col-sm-12">
+                    <div style="color:black;"class="wow fadeInUp footer-copyright">
+                         <p>Made in USA <br>
+                         Copyright &copy;   2020  Library Management system </p>
+                        <a style="color:black;" href="#">Privacy Policy</a>
+                             &middot;
+                         <a style="color:black;"  href="#">Terms &amp; Conditions</a>
+
+                    </div>
+               </div>
+
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

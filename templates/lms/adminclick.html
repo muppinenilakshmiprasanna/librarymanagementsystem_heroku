@@ -1,0 +1,18 @@
+{% extends 'lms/base.html' %}
+{% load static %}
+{% block content %}
+ <div class="ui main container">
+
+
+    <h1 class="display-4">Hello, Admin</h1>
+    <p class="lead">Welcome to Online Library Management System.</p>
+    <hr class="my-4">
+    <p>You can access various features after Login/SignUp.</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="{% url 'lms:adminsignup' %}" role="button">SignUp</a>
+      <a class="btn btn-primary btn-lg" href="{% url 'lms:adminlogin' %}" role="button">Login</a>
+    </p>
+
+</div>
+
+{% endblock %}

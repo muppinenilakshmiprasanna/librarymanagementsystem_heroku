@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -41,10 +42,10 @@ class Author(models.Model):
     updated_date = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return 'Author: ' + self.first_name + ' ' + self.last_name
+        return self.first_name + ' ' + self.last_name
 
     def __str__(self):
-        return 'Author: ' + self.first_name + ' ' + self.last_name
+        return self.first_name + ' ' + self.last_name
 
     class Meta:
         get_latest_by = "first_name"
@@ -73,8 +74,6 @@ class Book(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
     updated_date = models.DateTimeField(auto_now_add=True)
 
-
-
     def __str__(self):
         return self.name
 
@@ -86,14 +85,28 @@ class Book(models.Model):
         self.updated_date = timezone.now()
         self.save()
 
+def get_expiry():
+    return (datetime.today() + timedelta(days=15))
+
 class Borrower(models.Model):
     student = models.ForeignKey('Student', on_delete=models.CASCADE,related_name='borrowerstudent')
     book = models.ForeignKey('Book', on_delete=models.CASCADE,related_name='borrowerbook')
-    issue_date = models.DateTimeField(null=True,blank=True)
-    return_date = models.DateTimeField(null=True,blank=True)
+    issue_date = models.DateField(null=True,blank=True)
+    excepted_return_date = models.DateField(default=get_expiry)
+    actual_return_date = models.DateField(null=True,blank=True)
+    created_date = models.DateTimeField(default=timezone.now)
+    updated_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.student.user.first_name+self.student.user.last_name+" borrowed "+self.book.name
+        return str(self.student)+" borrowed "+str(self.book.name)
+
+    def created(self):
+        self.created_date = timezone.now()
+        self.save()
+
+    def updated(self):
+        self.updated_date = timezone.now()
+        self.save()
 
 
 class Student(models.Model):
@@ -123,7 +136,7 @@ class Student(models.Model):
         self.save()
 
     def __str__(self):
-        return self.nu_id
+        return str(self.user)
 
 class Staff(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
@@ -148,7 +161,3 @@ class Staff(models.Model):
 
     def __str__(self):
         return str(self.user)
-
-
-
-

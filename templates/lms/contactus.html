@@ -1,0 +1,18 @@
+{% extends "lms/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="ui main container"   xmlns="http://www.w3.org/1999/html">
+
+ <h3 >Contact Us</h3>
+
+<form method="post" action="" >
+        {{ form|crispy}}
+        {% csrf_token %}
+         <input type="submit" value="Send Message" class = 'btn btn-primary btn-lg'>
+          </form>
+            <br/>
+</div>
+
+{% endblock %}
+
+

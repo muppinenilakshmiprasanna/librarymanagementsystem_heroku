@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'lms/base.html' %}
+{% block content %}
+ <div class="ui main container">
+    <head>
+        <meta charset="UTF-8">
+        <title>Library Management System </title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    </head>
+    <body>
+    <style>
+        body {background-color: beige;}
+    </style>
+
+    <div class="row">
+        <h2 style="padding-left: 15Px">Category Information</h2>
+    </div>
+     {% if categories %}
+    <div>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr class="bg-info">
+
+                    <th>Name</th>
+                    <th colspan="2">Actions</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                    <tr>
+
+                        <td>{{ category.name }}</td>
+
+
+                        <td><a href="{% url 'lms:category_edit' pk=category.pk %}" class= "btn btn-warning">Edit</a></td>
+                        <td><a href="{% url 'lms:category_delete' pk=category.pk %}"
+                        onclick="return confirm('Are you sure you want to delete?')"
+                        class="btn btn-danger">Delete</a></td>
+
+                    </tr>
+               {% endfor %}
+            </tbody>
+        </table>
+         {% else  %}
+        <div class="col-md-12" style="text-align: center;">
+            <div >
+                <p class="lead">
+                  No Records Available
+                </p>
+            </div>
+        </div>
+
+     {% endif %}
+
+        <div class="row">
+            <div class="col-sm-4">
+            <a href="{% url 'lms:category_new' %}" class="row"><span class="btn btn-primary">Add Category</span></a>
+            </div>
+        </div>
+
+
+    </div>
+    </body>
+ </div>
+    </html>
+
+{% endblock %}

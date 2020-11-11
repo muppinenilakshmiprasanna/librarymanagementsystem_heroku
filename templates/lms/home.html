@@ -1,0 +1,115 @@
+{% extends 'lms/base.html' %}
+{% load static %}
+{% block content %}
+ <!--{% if user.is_authenticated and user.groups.all.0.name == "ADMIN" %}
+  <div class="page-container">
+                <h2 class="top-menu">Welcome {{ user.username }}, to online Library Management system </h2>
+                <p>Please choose from below options.</p>
+            </div>
+
+
+         <div class="content white-square">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="thumbnail">
+                        <h2>VIEW CATEGORIES</h2>
+                        <p><a class="btn btn-primary" href="{% url 'lms:category_list' %}" role="button">Click here </a></p>
+                    </div>
+                </div>
+                  <div class="col-md-5">
+                    <div class="thumbnail">
+                        <h2>VIEW AUTHORS</h2>
+                        <p><a class="btn btn-primary" href="{% url 'lms:author_list' %}" role="button">Click here </a></p>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="thumbnail">
+                        <h2>VIEW BOOKS</h2>
+                        <p><a class="btn btn-primary" href="{% url 'lms:book_list' %}" role="button">Click here </a></p>
+                    </div>
+                </div>
+                  <div class="col-md-5">
+                    <div class="thumbnail">
+                        <h2>ISSUE BOOK<br><br></h2>
+                        <p><a class="btn btn-primary" href="#" role="button">Click here </a></p>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="thumbnail">
+                        <h2>VIEW ISSUED BOOKS<br><br></h2>
+                        <p><a class="btn btn-primary" href="#" role="button">Click here </a></p>
+                    </div>
+                </div>
+                 <div class="col-md-5">
+                    <div class="thumbnail">
+                        <h2>ACCOUNT PROFILE</h2>
+                        <p><a class="btn btn-primary" href="#" role="button">Click here </a></p>
+                    </div>
+                </div>
+
+              <div class="col-md-5">
+                    <div class="thumbnail">
+                        <h2>VIEW STUDENTS</h2>
+                        <p><a class="btn btn-primary" href="{% url 'lms:viewstudent' %}" role="button">Click here </a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+   {% else %}-->
+
+ <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="item active">
+      <img class="d-block w-100" src='{% static "images/lib1.png" %}' alt="First slide" >
+    </div>
+    <div class="item">
+      <img class="d-block w-100" src='{% static "images/lib2.jpg" %}' alt="Second slide" >
+    </div>
+    <div class="item">
+      <img class="d-block w-100" src='{% static "images/lib3.jpg" %}' alt="Third slide" >
+    </div>
+ </div>
+  <a class="left carousel-control" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+
+</div>
+
+
+<div>
+  <h1 style="text-align:center" class="display-4">Hello, User</h1>
+  <p class="lead">A service dedicated to Admin and Student. We provide online resources, professional support
+    and guidance to all our students whenever, and from wherever they have chosen to study.</p>
+  <hr class="my-4">
+
+  <div class="row">
+
+    <div class="col-lg-6">
+      <img src='{% static "images/Admin-icon.png" %}' width="50%" height="50%" alt=""><br><br>
+        <a class="btn btn-primary btn-lg" style="text-align:center" href="{% url 'lms:adminclick' %}" role="button">Admin</a>
+
+    </div>
+
+    <div class="col-lg-6">
+      <img src='{% static "images/student.png" %}' width="50%" height="50%" alt=""><br><br>
+      <a class="btn btn-primary btn-lg" href="{% url 'lms:studentlink' %}" role="button">Student</a>
+    </div>
+  </div>
+<hr class="my-4">
+
+</div>
+<!--{% endif %}-->
+{% endblock %}
