@@ -35,7 +35,6 @@ def contactus(request):
             name=form.cleaned_data['Name']
             message = form.cleaned_data['Message']
             send_mail(str(name)+' || '+str(email),message, EMAIL_HOST_USER, ['lakshmiprasanna.muppineni26@gmail.com'], fail_silently = False)
-        #return render(request, 'lms/contactsuccess.html')
         return redirect('lms:contactussuccess')
     else:
         form = forms.ContactusForm()
@@ -128,8 +127,6 @@ def category_new(request):
             category = form.save(commit=False)
             category.created_date = timezone.now()
             category.save()
-            #categories = Category.objects.filter(created_date__lte=timezone.now())
-            #return render(request, 'lms/category_list.html', {'categories': categories})
             return redirect('lms:category_list')
     else:
         form = CategoryForm()
@@ -146,8 +143,6 @@ def category_edit(request,pk):
             category = form.save()
             category.updated_date = timezone.now()
             category.save()
-            #categories = Category.objects.filter(created_date__lte=timezone.now())
-            #return render(request, 'lms/category_list.html', {'categories': categories})
             return redirect('lms:category_list')
     else:
         # print("else")
@@ -175,8 +170,6 @@ def author_new(request):
             author = form.save(commit=False)
             author.created_date = timezone.now()
             author.save()
-            #authors = Author.objects.filter(created_date__lte=timezone.now())
-            #return render(request, 'lms/author_list.html', {'authors': authors})
             return redirect('lms:author_list')
     else:
         form = AuthorForm()
@@ -193,8 +186,6 @@ def author_edit(request,pk):
             author = form.save()
             author.updated_date = timezone.now()
             author.save()
-            #authors = Author.objects.filter(created_date__lte=timezone.now())
-            #return render(request, 'lms/author_list.html', {'authors': authors})
             return redirect('lms:author_list')
     else:
         # print("else")
@@ -222,8 +213,6 @@ def book_new(request):
             book = form.save(commit=False)
             book.created_date = timezone.now()
             book.save()
-            #books = Book.objects.filter(created_date__lte=timezone.now())
-            #return render(request, 'lms/book_list.html', {'books': books})
             return redirect('lms:book_list')
     else:
         form = BookForm()
@@ -240,8 +229,6 @@ def book_edit(request,pk):
             book = form.save()
             book.updated_date = timezone.now()
             book.save()
-            #books = Book.objects.filter(created_date__lte=timezone.now())
-            #return render(request, 'lms/book_list.html', {'books': books})
             return redirect('lms:book_list')
     else:
         # print("else")
@@ -299,8 +286,6 @@ def returnbook(request,pk):
             borrower.updated_date = timezone.now()
             borrower.save()
             print(book.quantity_total_copies)
-            #issuedbooks = Borrower.objects.all()
-            #return render(request, 'lms/viewissuedbook.html',{'issuedbooks':issuedbooks})
             return redirect('lms:viewissuedbooks')
     else:
         print("else")
@@ -309,18 +294,14 @@ def returnbook(request,pk):
 
 @login_required()
 def viewissuedbooks(request):
-    #issuedbooks=Borrower.objects.all(created_date__lte=timezone.now())
     issuedbooks=Borrower.objects.filter(created_date__lte=timezone.now())
     return render(request,'lms/viewissuedbook.html',{'issuedbooks':issuedbooks})
 
 
 @login_required(login_url='studentlogin')
 def viewissuedbookstostudent(request):
-    #student = Student.objects.filter(user__pk=request.user.id)
-    #student = Student.objects.filter(user_id=request.user.id)
     student = Student.objects.get(user_id=request.user.id)
     print(student)
-    #issuedbooks = Borrower.objects.filter(student__user=request.user.id)
     issuedbooks = Borrower.objects.filter(student_id=student.pk)
     print(issuedbooks)
     return render(request,'lms/viewissuedbookbystudent.html',{'issuedbooks':issuedbooks})
@@ -340,8 +321,6 @@ def staff_profile(request):
         print("user details", user)
         return render(request, 'lms/superuserprofile.html', {'user': user})
     else:
-        # staff = Staff.objects.filter(user__pk=request.user.id)
-        # staff = Staff.objects.filter(user_id=request.user.id)
         staff = Staff.objects.get(user_id=request.user.id)
         print("staff details", staff)
     return render(request, 'lms/staffprofile.html', {'staff': staff})
@@ -388,7 +367,6 @@ def admin_profile_edit(request, pk):
 
 @login_required()
 def student_profile(request):
-    #student = Student.objects.filter(user_id=request.user.id)
     student = Student.objects.get(user_id=request.user.id)
     print("student details",student)
     return render(request, 'lms/studentprofile.html', {'student': student})
