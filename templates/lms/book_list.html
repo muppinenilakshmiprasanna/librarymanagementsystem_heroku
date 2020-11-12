@@ -28,7 +28,7 @@
                     <th>Category</th>
                     <th>Quantity(total number of copies)</th>
                      {% if user.is_authenticated %}
-                     {% if user.groups.all.0.name == "ADMIN" or user.is_superuser %}
+                     {% if user.groups.all.0.name == "STAFF" or user.is_superuser %}
                     <th colspan="2">Actions</th>
                     {% endif %}
                      {% endif %}
@@ -44,7 +44,7 @@
                          <td>{{ book.category }}</td>
                         <td>{{ book.quantity_total_copies }}</td>
                         {% if user.is_authenticated  %}
-                         {% if user.groups.all.0.name == "ADMIN" or user.is_superuser %}
+                         {% if user.groups.all.0.name == "STAFF" or user.is_superuser %}
                         <td><a href="{% url 'lms:book_edit' pk=book.pk %}" class= "btn btn-warning">Edit</a></td>
                         <td><a href="{% url 'lms:book_delete' pk=book.pk %}"
                         onclick="return confirm('Are you sure you want to delete?')"
@@ -66,7 +66,7 @@
 
      {% endif %}
          {% if user.is_authenticated %}
-         {% if user.groups.all.0.name == "ADMIN" or user.is_superuser %}
+         {% if user.groups.all.0.name == "STAFF" or user.is_superuser %}
         <div class="row">
             <a href="{% url 'lms:book_new' %}" class="row"><span class="btn btn-primary">Add Book</span></a>
         </div>

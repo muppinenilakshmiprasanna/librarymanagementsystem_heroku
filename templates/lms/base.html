@@ -93,7 +93,7 @@
                 </li>
 
                 {% if user.is_authenticated %}
-                {% if user.groups.all.0.name == "ADMIN" or user.is_superuser %}
+                {% if user.groups.all.0.name == "STAFF" or user.is_superuser %}
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"

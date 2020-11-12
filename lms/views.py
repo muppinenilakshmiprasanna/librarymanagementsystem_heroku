@@ -85,7 +85,7 @@ def adminsignupview(request):
             staff.user = user
             staff.save()
             print(staff.user)
-            my_admin_group = Group.objects.get_or_create(name='ADMIN')
+            my_admin_group = Group.objects.get_or_create(name='STAFF')
             my_admin_group[0].user_set.add(user)
             print(my_admin_group[0])
         return HttpResponseRedirect(reverse('lms:adminlogin'))
