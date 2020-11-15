@@ -83,14 +83,14 @@ class IssueBookForm(forms.ModelForm):
             #'expected_return_date': forms.DateInput(),
         }
 
-    def clean(self):
+    """def clean(self):
         cleaned_data = super(IssueBookForm, self).clean()
         issuedate = cleaned_data.get("issue_date")
 
         if issuedate :
             if datetime.today().date() < issuedate:
                 raise forms.ValidationError("Issue date cannot be earlier than today's Date!")
-        return cleaned_data
+        return cleaned_data"""
 
     """def __init__(self, *args, **kwargs):
         super(IssueBookForm, self).__init__(*args, **kwargs)

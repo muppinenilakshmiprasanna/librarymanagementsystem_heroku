@@ -244,6 +244,8 @@ def book_delete(request, pk):
 
 @login_required()
 def issuebook(request):
+    books = Book.objects.filter(quantity_total_copies__gt=0)
+    print("books",books)
     if request.method == "POST":
         print("opening new form request method is post")
         form = IssueBookForm(request.POST)
@@ -267,6 +269,7 @@ def issuebook(request):
     else:
         print("opening new form1")
         form = IssueBookForm()
+        form.fields['book'].queryset = books
     return render(request, 'lms/issuebook.html', {'form': form})
 
 
