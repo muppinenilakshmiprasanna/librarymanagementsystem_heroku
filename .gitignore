@@ -7,5 +7,5 @@ db.SQLITE3
 /static
 .DS_Store
 db.sqlite3
-.idea
 local_settings.py
+.idea
