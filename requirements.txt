@@ -1,2 +1,8 @@
 django
 django-crispy-forms
+psycopg2
+gunicorn
+django-heroku
+dj-database-url
+pisa
+xhtml2pdf
